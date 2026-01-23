@@ -10,7 +10,7 @@
 Copy-Item codex_runner/user_example.py codex_runner/user.py
 ```
 
-2) Установите проект из корня репозитория:
+2) Установите проект ГЛОБАЛЬНО из корня репозитория:
 
 ```bash
 pip install -e .
