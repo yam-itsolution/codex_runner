@@ -1,6 +1,6 @@
 # codex-runner
 
-Вспомогательная CLI-утилита для Windows, которая запускает CLI codex от имени другого пользователя Windows с помощью runas.
+Вспомогательная CLI-утилита для Windows, которая запускает codex с помощью runas.
 
 ## Установка
 
@@ -16,7 +16,12 @@ Copy-Item codex_runner/user_example.py codex_runner/user.py
 pip install -e .
 ```
 
-## Run
+Если pip ругается на отсутствие setup.py - нужно обновить pip
+```bash
+python -m pip install --upgrade pip
+```
+
+## Запуск
 
 После установки команда будет доступна как:
 
