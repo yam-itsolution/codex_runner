@@ -1,0 +1,6 @@
+[project]
+name = "codex-runner"
+version = "0.1.0"
+
+[project.scripts]
+codex-run = "codex_runner.cli:main"
