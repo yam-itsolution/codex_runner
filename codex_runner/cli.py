@@ -1,7 +1,11 @@
 import os
 import subprocess
 
-from .user import USER
+try:
+    from .user import USER
+except ImportError:
+    from warnings import warn
+    warn('create codex_runner/user.py')
 
 
 RUNAS = r"C:\Windows\System32\runas.exe"
