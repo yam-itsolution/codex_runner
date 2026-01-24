@@ -23,7 +23,7 @@ def run_codex() -> None:
 
     for file in FORBIDDEN_FILES:
         path = os.path.join(cwd, file)
-        if not os.path.exists(path) or have_access(path, user, SETTABLE_RIGHTS):
+        if not os.path.exists(path) or not have_access(path, user, SETTABLE_RIGHTS):
             continue
         deny_access(path, user)
 
