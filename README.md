@@ -4,10 +4,9 @@
 
 ## Установка
 
-1) Создайте файл codex_runner/user.py (он добавлен в .gitignore) на основе примера и укажите ваше имя пользователя Windows:
-
-```powershell
-Copy-Item codex_runner/user_example.py codex_runner/user.py
+1) Обновите pip
+```bash
+python -m pip install --upgrade pip
 ```
 
 2) Установите проект ГЛОБАЛЬНО из корня репозитория:
@@ -16,14 +15,16 @@ Copy-Item codex_runner/user_example.py codex_runner/user.py
 pip install -e .
 ```
 
-Если pip ругается на отсутствие setup.py - нужно обновить pip
-```bash
-python -m pip install --upgrade pip
-```
 
 ## Запуск
 
-После установки команда будет доступна как:
+После установки единожды потребуется указать имя пользователя, под которым запускается codex
+
+```bash
+codex-run init
+```
+
+После указания пользователя команда будет доступна как:
 
 ```bash
 codex-run
