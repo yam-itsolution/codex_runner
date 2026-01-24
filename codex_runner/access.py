@@ -1,6 +1,6 @@
 import subprocess
 from enum import Enum
-from typing import Iterable
+from typing import Iterable, Union
 
 
 class AccessRight(str, Enum):
@@ -28,7 +28,7 @@ def deny_access(path: str, user: str) -> None:
 def have_access(
     path: str,
     user: str,
-    rights: AccessRight | Iterable[AccessRight],
+    rights: Union['AccessRight', Iterable['AccessRight']],
 ) -> bool:
     if isinstance(rights, AccessRight):
         rights = {rights.value}

@@ -24,7 +24,8 @@ def run_codex() -> None:
     for file in FORBIDDEN_FILES:
         path = os.path.join(cwd, file)
         if not os.path.exists(path) or have_access(path, user, SETTABLE_RIGHTS):
-            deny_access(path, user)
+            continue
+        deny_access(path, user)
 
     inner_cmd = f'{CODEX} --cd "{cwd}"'
 
