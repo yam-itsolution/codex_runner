@@ -36,7 +36,7 @@ def run_codex() -> None:
         f'cmd.exe /k {inner_cmd}',
     ]
 
-    subprocess.run(full_cmd, shell=False)
+    subprocess.run(full_cmd, shell=False, stdout=subprocess.DEVNULL)
 
 
 def main() -> None:

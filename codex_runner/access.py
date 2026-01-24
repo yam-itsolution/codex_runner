@@ -15,6 +15,7 @@ def grant_access(path: str, user: str) -> None:
     subprocess.run(
         ['icacls', path, '/grant', f'{user}:(OI)(CI)M'],
         check=True,
+        stdout=subprocess.DEVNULL,
     )
 
 
@@ -22,6 +23,7 @@ def deny_access(path: str, user: str) -> None:
     subprocess.run(
         ['icacls', path, '/deny', f'{user}:(R,W,M)'],
         check=True,
+        stdout=subprocess.DEVNULL,
     )
 
 
@@ -37,9 +39,9 @@ def have_access(
 
     result = subprocess.run(
         ['icacls', path],
-        capture_output=True,
         text=True,
         check=True,
+        stdout=subprocess.DEVNULL,
     )
 
     allow: set[str] = set()
