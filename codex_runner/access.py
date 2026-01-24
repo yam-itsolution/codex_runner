@@ -39,9 +39,9 @@ def have_access(
 
     result = subprocess.run(
         ['icacls', path],
+        capture_output=True,
         text=True,
         check=True,
-        stdout=subprocess.DEVNULL,
     )
 
     allow: set[str] = set()
