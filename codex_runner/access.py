@@ -21,7 +21,7 @@ def grant_access(path: str, user: str) -> None:
 
 def deny_access(path: str, user: str) -> None:
     subprocess.run(
-        ['icacls', path, '/deny', f'{user}:(R,W,M)'],
+        ['icacls', path, '/deny', f'{user}:({AccessRight.R},{AccessRight.W},{AccessRight.M},{AccessRight.RX})'],
         check=True,
         stdout=subprocess.DEVNULL,
     )
@@ -38,7 +38,7 @@ def have_access(
         rights = {r.value for r in rights}
 
     result = subprocess.run(
-        ['icacls', path],
+        ["icacls", path],
         capture_output=True,
         text=True,
         check=True,
@@ -47,17 +47,20 @@ def have_access(
     allow: set[str] = set()
     deny: set[str] = set()
 
+    user_l = user.lower()
+
     for line in result.stdout.splitlines():
-        if not line.strip().startswith(user):
+        line_l = line.lower()
+
+        if f'{user_l}:' not in line_l:
             continue
 
         perms_part = line.split(':', 1)[1]
-
-        is_deny = '(DENY)' in perms_part
+        is_deny = '(DENY)' in perms_part.upper()
 
         for part in perms_part.split(')'):
-            part = part.strip('(')
-            if not part or part in {'OI', 'CI', 'I', 'DENY'}:
+            part = part.strip('(').strip()
+            if not part or part.upper() in {'OI', 'CI', 'I', 'DENY'}:
                 continue
 
             if is_deny:
@@ -68,4 +71,4 @@ def have_access(
     if deny & rights:
         return False
 
-    return rights <= allow
+    return bool(allow & rights)
