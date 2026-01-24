@@ -9,7 +9,7 @@ from .commands import init_command, require_user
 RUNAS = r'C:\Windows\System32\runas.exe'
 CODEX = r'C:\node24\codex'
 
-FORBIDDEN_FILES = ['local_settings.py', 'private_settings.py']
+FORBIDDEN_FILES = ['local_settings.py', 'private_settings.py', '.env']
 
 SETTABLE_RIGHTS = (AccessRight.R, AccessRight.W, AccessRight.M, AccessRight.RX)
 
