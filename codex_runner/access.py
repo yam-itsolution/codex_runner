@@ -21,7 +21,7 @@ def grant_access(path: str, user: str) -> None:
 
 def deny_access(path: str, user: str) -> None:
     subprocess.run(
-        ['icacls', path, '/deny', f'{user}:({AccessRight.R},{AccessRight.W},{AccessRight.M},{AccessRight.RX})'],
+        ['icacls', path, '/deny', f'{user}:({AccessRight.R.value},{AccessRight.W.value},{AccessRight.M.value},{AccessRight.RX.value})'],
         check=True,
         stdout=subprocess.DEVNULL,
     )
