@@ -31,16 +31,12 @@ def run_codex() -> None:
         if os.path.exists(path):
             deny_access(path, user)
 
-    inner_cmd = f'{CODEX} --cd "{cwd}"'
+    cmd = (
+        f'{RUNAS} /user:{user} /savecred '
+        f'"cmd.exe /k cd /d {cwd} && {CODEX}"'
+    )
 
-    full_cmd = [
-        RUNAS,
-        f'/user:{user}',
-        '/savecred',
-        f'cmd.exe /k {inner_cmd}',
-    ]
-
-    subprocess.run(full_cmd, shell=False, stdout=subprocess.DEVNULL)
+    subprocess.run(cmd, shell=True)
 
 
 def main() -> None:
