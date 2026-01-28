@@ -14,6 +14,11 @@ FORBIDDEN_FILES = ['local_settings.py', 'private_settings.py', '.env']
 SETTABLE_RIGHTS = (AccessRight.R, AccessRight.W, AccessRight.M, AccessRight.RX)
 
 
+COMMAND_ARGS_FUNCS = {
+    'init': init_command,
+}
+
+
 def run_codex() -> None:
     user = require_user()
     cwd = os.getcwd()
@@ -39,8 +44,8 @@ def run_codex() -> None:
 
 
 def main() -> None:
-    if len(sys.argv) > 1 and sys.argv[1] == 'init':
-        init_command()
+    if len(sys.argv) == 1:
+        run_codex()
         return
 
-    run_codex()
+    COMMAND_ARGS_FUNCS.get(sys.argv[1], lambda: RuntimeError('Unknown command'))()
