@@ -36,7 +36,7 @@ def run_codex() -> None:
         f'"cmd.exe /k cd /d {cwd} && {CODEX}"'
     )
 
-    subprocess.run(cmd, shell=True)
+    subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL)
 
 
 def main() -> None:
